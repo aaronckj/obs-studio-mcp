@@ -1,0 +1,33 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e '.[dev]'
+      - name: Lint
+        run: ruff check src tests
+      - name: Tests
+        run: pytest
+      - name: Forbidden terms check
+        env:
+          FORBIDDEN_TERMS: ${{ secrets.FORBIDDEN_TERMS }}
+        run: |
+          if [ -n "$FORBIDDEN_TERMS" ] && git grep -qiE "$FORBIDDEN_TERMS" -- . ; then
+            echo "::error::forbidden terms found in repository"
+            exit 1
+          fi
+      - name: Secret shape check
+        run: |
+          if git grep -nE '(password|refresh_token|client_secret)"?\s*[:=]\s*"[A-Za-z0-9_/-]{20,}' -- ':!tests' ; then
+            echo "::error::possible hardcoded credential"
+            exit 1
+          fi

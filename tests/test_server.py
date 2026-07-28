@@ -1,0 +1,25 @@
+import asyncio
+
+from obs_studio_mcp.server import build_app
+
+EXPECTED = {
+    # scenes
+    "list_scenes", "switch_scene", "set_preview_scene", "trigger_transition",
+    "set_studio_mode", "list_scene_items", "set_scene_item_visibility",
+    # sources
+    "list_inputs", "get_audio_levels", "set_mute", "set_volume",
+    "update_text_source", "screenshot_source", "media_control",
+    # output
+    "stream_status", "start_stream", "stop_stream", "record_status",
+    "start_record", "stop_record", "pause_record", "save_replay",
+    "set_replay_buffer", "set_virtual_cam",
+    # system
+    "get_stats", "list_profiles", "switch_profile", "list_scene_collections",
+    "switch_scene_collection", "trigger_hotkey", "health_check",
+}
+
+
+def test_all_tools_registered():
+    app = build_app()
+    tools = asyncio.run(app.list_tools())
+    assert {t.name for t in tools} == EXPECTED
