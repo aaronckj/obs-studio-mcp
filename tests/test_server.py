@@ -13,6 +13,9 @@ EXPECTED = {
     "stream_status", "start_stream", "stop_stream", "record_status",
     "start_record", "stop_record", "pause_record", "save_replay",
     "set_replay_buffer", "set_virtual_cam",
+    # filters/transforms/health
+    "list_source_filters", "set_filter_enabled", "get_scene_item_transform",
+    "set_scene_item_transform", "watch_health",
     # system
     "get_stats", "list_profiles", "switch_profile", "list_scene_collections",
     "switch_scene_collection", "trigger_hotkey", "health_check",
