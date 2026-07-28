@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from mcp.server.fastmcp import FastMCP
 
-from .tools import filters, output, scenes, sources, system
+from .tools import filters, output, scenes, sources, system, tuning
 
 
 def build_app() -> FastMCP:
@@ -17,6 +17,6 @@ def build_app() -> FastMCP:
             "dry_run=True to preview without acting."
         ),
     )
-    for module in (scenes, sources, filters, output, system):
+    for module in (scenes, sources, filters, output, system, tuning):
         module.register(mcp)
     return mcp
