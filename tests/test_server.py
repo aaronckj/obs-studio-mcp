@@ -22,6 +22,9 @@ EXPECTED = {
     "set_input_settings_json", "get_profile_parameter", "set_profile_parameter",
     "get_audio_sync_offset", "set_audio_sync_offset", "get_audio_monitoring",
     "set_audio_monitoring", "get_audio_tracks", "set_audio_tracks",
+    # build
+    "create_scene", "remove_scene", "add_source", "list_input_kinds",
+    "add_existing_source", "duplicate_scene", "set_source_order",
     # sfx
     "add_sfx", "list_sfx", "play_sfx", "stop_sfx", "remove_sfx",
     # system
