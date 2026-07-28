@@ -14,7 +14,8 @@ EXPECTED = {
     "start_record", "stop_record", "pause_record", "save_replay",
     "set_replay_buffer", "set_virtual_cam",
     # filters/transforms/health
-    "list_source_filters", "set_filter_enabled", "get_scene_item_transform",
+    "list_source_filters", "get_filter_settings", "set_filter_settings",
+    "set_filter_enabled", "get_scene_item_transform",
     "set_scene_item_transform", "watch_health",
     # tuning
     "get_video_settings", "set_video_settings", "get_input_settings",

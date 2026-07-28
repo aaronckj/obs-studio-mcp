@@ -52,6 +52,34 @@ def register(mcp) -> None:
         ]
 
     @mcp.tool()
+    def get_filter_settings(source: str, filter_name: str) -> dict:
+        """A filter's kind and full settings object (e.g. noise gate thresholds,
+        compressor ratio) — inspect before tuning with set_filter_settings."""
+        obs = get_obs()
+        r = obs.call("get_source_filter", source, filter_name)
+        return {
+            "kind": r.filter_kind,
+            "enabled": r.filter_enabled,
+            "settings": r.filter_settings,
+        }
+
+    @mcp.tool()
+    def set_filter_settings(
+        source: str, filter_name: str, settings: dict, dry_run: bool = False
+    ) -> dict:
+        """Merge settings into a filter (keys from get_filter_settings). Examples:
+        noise gate {"open_threshold": -26, "close_threshold": -32};
+        compressor {"ratio": 4.0, "threshold": -18}; gain {"db": 3.0}."""
+        if dry_run:
+            return preview(
+                "set_filter_settings",
+                {"source": source, "filter": filter_name, "settings": settings},
+            )
+        obs = get_obs()
+        obs.call("set_source_filter_settings", source, filter_name, settings, True)
+        return {"source": source, "filter": filter_name, "merged": settings}
+
+    @mcp.tool()
     def set_filter_enabled(
         source: str, filter_name: str, enabled: bool, dry_run: bool = False
     ) -> dict:
