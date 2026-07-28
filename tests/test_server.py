@@ -22,6 +22,8 @@ EXPECTED = {
     "set_input_settings_json", "get_profile_parameter", "set_profile_parameter",
     "get_audio_sync_offset", "set_audio_sync_offset", "get_audio_monitoring",
     "set_audio_monitoring", "get_audio_tracks", "set_audio_tracks",
+    # sfx
+    "add_sfx", "list_sfx", "play_sfx", "stop_sfx", "remove_sfx",
     # system
     "get_stats", "list_profiles", "switch_profile", "list_scene_collections",
     "switch_scene_collection", "trigger_hotkey", "health_check",
