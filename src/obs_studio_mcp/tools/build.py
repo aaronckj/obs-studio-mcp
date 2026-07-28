@@ -61,7 +61,7 @@ def register(mcp) -> None:
     def list_input_kinds() -> list[str]:
         """List the input kinds this OBS build supports (for add_source)."""
         obs = get_obs()
-        return list(obs.call("get_input_kind_list").input_kinds)
+        return list(obs.call("get_input_kind_list", False).input_kinds)
 
     @mcp.tool()
     def add_existing_source(scene: str, source_name: str, dry_run: bool = False) -> dict:

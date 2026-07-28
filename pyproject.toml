@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "obs-studio-mcp"
-version = "0.5.0"
+version = "0.5.1"
 description = "MCP server for controlling OBS Studio over obs-websocket v5: scenes, sources, audio, streaming, recording, replay buffer, stats, and text overlays."
 readme = "README.md"
 license = "MIT"
